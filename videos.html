@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Vidéos - Femme Tunisienne</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Inter:wght@500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+        }
+
+        .back-arrow {
+            font-size: 24px;
+            text-decoration: none;
+            color: black;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .ar {
+            display: none;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .fr {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<a href="index.html" class="back-arrow">←</a>
+
+<header>
+    <h1>
+        <span class="fr">Vidéos éducatives</span>
+        <span class="ar">فيديوهات توعوية</span>
+    </h1>
+
+    <nav>
+        <a href="index.html">
+            <span class="fr">Accueil</span>
+            <span class="ar">الرئيسية</span>
+        </a>
+
+        <a href="videos.html">
+            <span class="fr">Vidéos</span>
+            <span class="ar">فيديوهات</span>
+        </a>
+
+        <a href="faq.html">
+            <span class="fr">FAQ</span>
+            <span class="ar">الأسئلة الشائعة</span>
+        </a>
+
+        <a href="statistics.html">
+            <span class="fr">Statistiques</span>
+            <span class="ar">إحصائيات</span>
+        </a>
+
+        <a href="quiz.html">
+            <span class="fr">Quiz</span>
+            <span class="ar">اختبار</span>
+        </a>
+    </nav>
+</header>
+
+<section class="video-player">
+    <h2>
+        <span class="fr">Regardez cette vidéo :</span>
+        <span class="ar">شاهد هذا الفيديو :</span>
+    </h2>
+
+    <video controls width="500">
+        <source src="assets/videos/video1.mp4" type="video/mp4">
+        <span class="fr">Votre navigateur ne supporte pas la vidéo.</span>
+        <span class="ar">متصفحك لا يدعم تشغيل الفيديو.</span>
+    </video>
+</section>
+
+<section class="comments">
+    <h2>
+        <span class="fr">Commentaires</span>
+        <span class="ar">التعليقات</span>
+    </h2>
+
+    <textarea id="comment-fr" class="fr" placeholder="Écrire un commentaire..." rows="4" cols="50"></textarea>
+    <textarea id="comment-ar" class="ar" placeholder="اكتب تعليقًا..." rows="4" cols="50"></textarea>
+
+    <br><br>
+
+    <button class="fr" onclick="addComment()">Publier</button>
+    <button class="ar" onclick="addComment()">نشر</button>
+
+    <hr>
+
+    <!-- Ici s'affichent les commentaires -->
+    <div id="comment-list"></div>
+</section>
+
+
+<section class="files">
+    <h2>
+        <span class="fr">Documents & Articles</span>
+        <span class="ar">مستندات ومقالات</span>
+    </h2>
+
+    <ul>
+        <li>
+            <a href="assets/files/article1.pdf" target="_blank">
+                <span class="fr">📄 Article 1</span>
+                <span class="ar">📄 مقال 1</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="assets/files/article2.pdf" target="_blank">
+                <span class="fr">📄 Article 2</span>
+                <span class="ar">📄 مقال 2</span>
+            </a>
+        </li>
+    </ul>
+</section>
+
+<!-- Script langue -->
+<script>
+    const arElements = document.querySelectorAll(".ar");
+    const frElements = document.querySelectorAll(".fr");
+
+    function setLanguage(lang) {
+        if (lang === "ar") {
+            arElements.forEach(el => el.style.display = "block");
+            frElements.forEach(el => el.style.display = "none");
+            document.documentElement.lang = "ar";
+            document.documentElement.dir = "rtl";
+        } else {
+            arElements.forEach(el => el.style.display = "none");
+            frElements.forEach(el => el.style.display = "block");
+            document.documentElement.lang = "fr";
+            document.documentElement.dir = "ltr";
+        }
+        localStorage.setItem("language", lang);
+    }
+
+    setLanguage(localStorage.getItem("language") || "fr");
+</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+  import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDJr2sKrL1JcvMdjyyyKlNZS3fLdJ4g3Bs",
+    authDomain: "femme-tunisienne.firebaseapp.com",
+    databaseURL: "https://femme-tunisienne-default-rtdb.firebaseio.com",
+    projectId: "femme-tunisienne",
+    storageBucket: "femme-tunisienne.firebasestorage.app",
+    messagingSenderId: "217839476470",
+    appId: "1:217839476470:web:81d6afb999d26bca5896d7"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const commentsRef = ref(db, "comments");
+
+  // Ajouter un commentaire
+  window.addComment = function () {
+    const lang = document.documentElement.lang || "fr";
+    const text = lang === "ar"
+      ? document.getElementById("comment-ar").value
+      : document.getElementById("comment-fr").value;
+
+    if (text.trim() === "") return;
+
+    push(commentsRef, {
+      text: text,
+      lang: lang,
+      time: Date.now()
+    });
+
+    document.getElementById("comment-fr").value = "";
+    document.getElementById("comment-ar").value = "";
+  };
+
+  // Afficher les commentaires
+  const list = document.getElementById("comment-list");
+
+  onValue(commentsRef, (snapshot) => {
+    list.innerHTML = "";
+    snapshot.forEach(child => {
+      const c = child.val();
+      const div = document.createElement("div");
+
+      div.style.borderBottom = "1px solid #ccc";
+      div.style.padding = "8px";
+      div.style.marginBottom = "5px";
+      div.style.direction = c.lang === "ar" ? "rtl" : "ltr";
+      div.style.textAlign = c.lang === "ar" ? "right" : "left";
+
+      div.textContent = c.text;
+      list.prepend(div);
+    });
+  });
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,225 @@
+
+/* ===== GLOBAL STYLES ===== */
+body {
+    background-color: #68d9ad;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== HEADER ===== */
+header {
+    background-color: #68d9ad;
+    padding: 20px;
+    color: #01010b;
+}
+
+/* Logo */
+header img.logo {
+    width: 120px;
+    display: block;
+    margin: 10px auto;
+}
+
+/* ===== LANGUAGE SWITCH ===== */
+.language-switch {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.language-switch button {
+    background-color: white;
+    border: 2px solid #ff69b4;
+    color: #01010b;
+    padding: 6px 14px;
+    font-size: 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.language-switch button:hover {
+    background-color: #ff69b4;
+    color: white;
+}
+
+.language-switch button.active {
+    background-color: #ff1493;
+    color: white;
+    border-color: #ff1493;
+}
+
+/* ===== PLATFORM NAME ===== */
+.platform-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 10px 0;
+    direction: ltr; /* prevent RTL/LTR bugs */
+}
+
+.platform-name .ar {
+    font-family: "Cairo", sans-serif;
+    direction: rtl;
+    text-align: right;
+}
+
+.platform-name .fr {
+    font-family: "Inter", sans-serif;
+    direction: ltr;
+    text-align: left;
+}
+
+.platform-name .separator {
+    font-size: 1.5rem;
+    opacity: 0.6;
+}
+
+/* Hide both languages by default; JS will show one */
+.platform-name .ar,
+.platform-name .fr {
+    display: none;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #01010b;
+    margin: 0 10px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: red;
+}
+
+/* ===== NOTIFICATION ===== */
+.notification {
+    background-color: #ffffff
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ===== ABOUT SECTION ===== */
+.about {
+    background-color: #fff;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.about h2 {
+    color: #ff1493;
+    margin-bottom: 15px;
+}
+
+.about p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* ===== SOCIAL ICONS ===== */
+.social-icons {
+    margin: 20px 0;
+}
+
+.social-icons a {
+    color: #333366;
+    font-size: 22px;
+    margin: 0 8px;
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ff1493;
+    transform: scale(1.2);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: #fff;
+    padding: 15px 0;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    .platform-name {
+        flex-direction: column;
+        gap: 0.2rem;
+        font-size: 1.5rem;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+.back-arrow {
+    font-size: 24px;
+    text-decoration: none;
+    color: black;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comments textarea {
+    width: 60%;
+    max-width: 500px;
+    margin-bottom: 10px;
+}
+.comments textarea.ar {
+    direction: rtl;
+    text-align: right;
+}
+
+.comments textarea.fr {
+    direction: ltr;
+    text-align: left;
+}
+
+
+
+
+
+
+
+

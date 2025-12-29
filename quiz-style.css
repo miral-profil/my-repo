@@ -1,0 +1,92 @@
+/* ===== GLOBAL ===== */
+body {
+    background: #fff0f5;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(90deg, #ff69b4, #ff1493);
+    color: white;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+}
+
+.quiz-section {
+    background-color: #fff;
+    max-width: 600px;
+    width: 90%;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    text-align: left;
+}
+
+.quiz-section p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333366;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    border: 2px solid #ff69b4;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #fff0f5;
+}
+
+label:hover {
+    background-color: #ff1493;
+    color: white;
+    transform: scale(1.03);
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+#submitQuiz {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 16px;
+    background: linear-gradient(90deg, #ff69b4, #ff1493);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+#submitQuiz:hover {
+    transform: scale(1.05);
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+}

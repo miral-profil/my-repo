@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ - Femme Tunisienne</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Collapsible FAQ styles */
+        .faq-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .faq {
+            cursor: pointer;
+            font-weight: bold;
+            color: rgb(0,0,0)
+        }
+        .faq-answer {
+            display: none;
+            margin-top: 5px;
+            padding-left: 10px;
+        }
+        .faq-answer span {
+            display:block;
+        }
+        .edit-btn {
+            margin-top: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Femme Tunisienne - FAQ</h1>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="videos.html">Vidéos</a>
+        <a href="faq.html">FAQ</a>
+        <a href="statistics.html">Statistiques</a>
+        <a href="quiz.html">Quiz</a>
+    </nav>
+</header>
+
+<section id="faq-section" style="max-width:800px; margin:auto; padding:20px; font-family:Arial,sans-serif;">
+  <h2 style="text-align:center; color:#c2185b;">FAQ - Questions Fréquentes</h2>
+  <div id="faq-list"></div>
+
+  <hr style="margin:20px 0;">
+
+  <h3 style="color:rgb(0,0,0)"> posez votre question </h3>
+  <form id="faq-form" style="display:flex; flex-direction:column;" onsubmit="return submitFAQForm()">
+      <label>Nom :</label>
+      <input type="text" id="faq-name" placeholder="Votre nom" required style="padding:8px; margin-bottom:10px;">
+      <label>Email :</label>
+      <input type="email" id="faq-email" placeholder="Votre email" required style="padding:8px; margin-bottom:10px;">
+      <label>Votre question :</label>
+      <textarea id="faq-question" rows="3" placeholder="Votre question" required style="padding:8px; margin-bottom:10px;"></textarea>
+      <button type="submit" style="background-color:#e6dbd1; color:rgb(0,0,0); padding:10px; border:none; cursor:pointer;">Envoyer</button>
+  </form>
+</section>
+
+<script>
+// Load FAQ from localStorage or set defaults
+let faqData = JSON.parse(localStorage.getItem('faqData')) || [
+    { question: "Pourquoi cette plateforme existe-t-elle ?", answer: "Pour valoriser et informer sur le rôle de la femme tunisienne.", count: 1 },
+    { question: "À qui s’adresse-t-elle ?", answer: "À tous ceux qui veulent apprendre et se sensibiliser.", count: 1 },
+    { question: "Comment puis-je envoyer un message ?", answer: "Vous pouvez utiliser le formulaire ci-dessus pour nous contacter.", count: 1 }
+];
+
+// Save to localStorage
+function saveFAQ() {
+    localStorage.setItem('faqData', JSON.stringify(faqData));
+}
+
+// Display FAQs
+function displayFAQs() {
+    let sorted = faqData.sort((a,b) => b.count - a.count);
+    let html = "";
+    sorted.forEach((item, index) => {
+        html += `
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer(${index})">${item.question}</div>
+            <div class="faq-answer">
+                <span id="answer-${index}">${item.answer ? item.answer : "Réponse en attente..."}</span>
+                <button class="edit-btn" onclick="editAnswer(event, ${index})">Modifier la réponse</button>
+            </div>
+        </div>`;
+    });
+    document.getElementById("faq-list").innerHTML = html;
+}
+
+// Toggle answer visibility
+function toggleAnswer(index) {
+    const ansDiv = document.getElementsByClassName('faq-answer')[index];
+    ansDiv.style.display = ansDiv.style.display === 'block' ? 'none' : 'block';
+}
+
+// Edit answer
+function editAnswer(event, index) {
+    event.stopPropagation(); // prevent toggle when editing
+    const newAnswer = prompt("Entrez la réponse correcte:", faqData[index].answer);
+    if(newAnswer !== null) {
+        faqData[index].answer = newAnswer.trim();
+        saveFAQ();
+        displayFAQs();
+    }
+}
+
+// Submit user question
+function submitFAQForm() {
+    const name = document.getElementById('faq-name').value;
+    const email = document.getElementById('faq-email').value;
+    const question = document.getElementById('faq-question').value.trim();
+
+    let found = faqData.find(item => item.question.toLowerCase() === question.toLowerCase());
+    if(found) {
+        found.count += 1;
+    } else {
+        faqData.push({ question: question, answer: "", count: 1 });
+    }
+
+    saveFAQ();
+    displayFAQs();
+
+    alert(`Merci ${name} ! Votre question a été ajoutée.`);
+    console.log("Nom:", name, "Email:", email, "Question:", question);
+
+    document.getElementById('faq-form').reset();
+    return false;
+}
+
+// Initial display
+displayFAQs();
+</script>
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+ <html lang="fr">
+  <head> 
+  	<meta charset="UTF-8">
+  	 <title>Femme tunisienne</title>
+  	 <meta name="description" content="Cette plateforme est créée par Ouri Ansem pour sensibiliser sur le cancer du col de l'utérus et valoriser le rôle de l'infirmier."> <!-- Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com">
+  	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700&family=Inter:wght@500;600&display=swap" rel="stylesheet">
+  	 <!-- Font Awesome -->
+  	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> <!-- Your CSS --> <link rel="stylesheet" href="style.css"> 
+  	</head> 
+  	<body>
+  	 <header>
+  	   <!-- Language Switch --> 
+  	   <div class="language-switch">
+  	    <button id="btn-ar" class="active">🇹🇳 عربي</button> 
+  	    <button id="btn-fr">🇫🇷 Français</button> </div> 
+  	    <!-- Platform Name -->
+  	     <h1 class="platform-name">
+  	      <span class="ar" lang="ar" dir="rtl">امرأة تونسية </span>
+  	       <span class="fr" lang="fr" dir="ltr">Femme Tunisienne</span> 
+  	   </h1>
+  	    <!-- Logo --> 
+  	    <img src="assets/logo.png" alt="Logo Femme Tunisienne" class="logo"> 
+  	    <!-- Navigation -->
+  	     <nav> 
+  	     	<nav>
+    <a href="index.html">
+        <span class="fr">Accueil</span>
+        <span class="ar" lang="ar" dir="rtl">الرئيسية</span>
+    </a>
+
+    <a href="videos.html">
+        <span class="fr">Vidéos</span>
+        <span class="ar" lang="ar" dir="rtl">فيديوهات</span>
+    </a>
+
+    <a href="faq.html">
+        <span class="fr">FAQ</span>
+        <span class="ar" lang="ar" dir="rtl">الأسئلة الشائعة</span>
+    </a>
+
+    <a href="stats.html">
+        <span class="fr">Statistiques</span>
+        <span class="ar" lang="ar" dir="rtl">إحصائيات</span>
+    </a>
+
+    <a href="quiz.html">
+        <span class="fr">Quiz</span>
+        <span class="ar" lang="ar" dir="rtl">اختبار</span>
+    </a>
+</nav>
+
+  	     </nav> 
+  	 </header>
+  	  <!-- Notification Section --> 
+  	  <section class="notification"> <span class="fr">🔔 Nouvelle mise à jour bientôt disponible !</span>
+    <span class="ar" lang="ar" dir="rtl">🔔 تحديث جديد قريبًا!</span>
+  	   </section> 
+  	  <!-- About Section --> 
+  	  <section class="about"> 
+	  	  <h2>
+	  	  	<span class="fr">Pourquoi cette plateforme ?</span>
+	        <span class="ar" lang="ar" dir="rtl">لماذا هذه المنصة؟</span>
+	      </h2>
+  	   <p class="fr"> Parce que la prévention sauve des vies, nous avons créé cette plateforme pour valoriser le rôle infirmier dans la sensibilisation, l’éducation et l’accompagnement des femmes à chaque étape : dépistage, prise en charge et vaccination contre le cancer du col de l’utérus. Accessible, éducative et inclusive, notre plateforme s’adresse à toutes les femmes tunisiennes : étudiantes, professionnelles de santé, femmes au foyer ou actives sans exception. </p>
+  	   <p class="ar" lang="ar" dir="rtl">
+        لأن الوقاية تنقذ الأرواح، أنشأنا هذه المنصة لتسليط الضوء على دور الممرضات في رفع مستوى الوعي والتثقيف ودعم النساء في جميع مراحل حياتهن: من الفحص والعلاج إلى التطعيم ضد سرطان عنق الرحم. منصتنا سهلة الوصول، تعليمية، وشاملة، وهي متاحة لجميع النساء التونسيات: الطالبات، والعاملات في مجال الرعاية الصحية، وربات البيوت، والنساء العاملات، دون استثناء.
+
+  	   </section> 
+  	   <!-- Social Media --> 
+  	   <section class="social-icons"> 
+  	   <a href="#"><i class="fa-brands fa-instagram"></i>
+  	   </a> 
+  	   <a href="#"><i class="fa-brands fa-tiktok"></i>
+  	   </a>
+  	    </section> 
+  	    <!-- Footer -->
+  	     <footer> 
+  	     	<p class="fr">📧 Contact : femmetunisienne@gmail.com</p>
+    <p class="ar" lang="ar" dir="rtl">📧 البريد الإلكتروني : femmetunisienne@gmail.com</p>
+
+    <p class="fr">📞 Téléphone : +216 28249012</p>
+    <p class="ar" lang="ar" dir="rtl">📞 الهاتف : +216 28249012</p>
+  	      
+  	     </footer>
+  	      <!-- Language Switch JS --> 
+  	      <script>
+    const btnAr = document.getElementById("btn-ar");
+    const btnFr = document.getElementById("btn-fr");
+
+    const arElements = document.querySelectorAll(".ar");
+    const frElements = document.querySelectorAll(".fr");
+
+    function setLanguage(lang) {
+        if (lang === "ar") {
+            arElements.forEach(el => el.style.display = "block");
+            frElements.forEach(el => el.style.display = "none");
+
+            document.documentElement.lang = "ar";
+            document.documentElement.dir = "rtl";
+
+            btnAr.classList.add("active");
+            btnFr.classList.remove("active");
+        } else {
+            arElements.forEach(el => el.style.display = "none");
+            frElements.forEach(el => el.style.display = "block");
+
+            document.documentElement.lang = "fr";
+            document.documentElement.dir = "ltr";
+
+            btnFr.classList.add("active");
+            btnAr.classList.remove("active");
+        }
+
+        localStorage.setItem("language", lang);
+    }
+
+    btnAr.addEventListener("click", () => setLanguage("ar"));
+    btnFr.addEventListener("click", () => setLanguage("fr"));
+
+    setLanguage(localStorage.getItem("language") || "ar");
+</script>
+ 
+  	 
+  	 	</body
+
+
+
+
+
