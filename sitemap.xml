@@ -4,11 +4,21 @@
       <loc>https://miral-profil.github.io/my-repo/</loc>
       <priority>1.0</priority>
    </url>
-   <!-- Add more pages below if you have, e.g.: -->
-   <!--
    <url>
-      <loc>https://miral-profil.github.io/my-repo/page2.html</loc>
+      <loc>https://miral-profil.github.io/my-repo/video.html</loc>
       <priority>0.8</priority>
    </url>
-   -->
+   <url>
+      <loc>https://miral-profil.github.io/my-repo/stats.html</loc>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://miral-profil.github.io/my-repo/faq.html</loc>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://miral-profil.github.io/my-repo/quiz.html</loc>
+      <priority>0.8</priority>
+   </url>
 </urlset>
+
